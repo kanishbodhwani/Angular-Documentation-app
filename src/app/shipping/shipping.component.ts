@@ -8,7 +8,11 @@ import { CartService } from '../cart.service';
   styleUrls: ['./shipping.component.css'],
 })
 export class ShippingComponent implements OnInit {
+  shippingCosts!: Observable<{ type: string; price: number }[]>;
+
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.shippingCosts = this.cartService.getShippingPrices();
+  }
 }
